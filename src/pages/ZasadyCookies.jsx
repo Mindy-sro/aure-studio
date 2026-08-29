@@ -52,9 +52,14 @@ export default function ZasadyCookies() {
           <section className="mt-12">
             <SectionTitle>Zhrnutie</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Tento web <strong>nenastavuje žiadne súbory cookies</strong>. Nepoužívame analytiku,
+              <strong>Sami nenastavujeme žiadne súbory cookies.</strong> Nepoužívame analytiku,
               reklamné ani sledovacie nástroje. Nezhromažďujeme údaje o vašom správaní a nikomu
               ich neodovzdávame.
+            </p>
+            <p className={`mt-3 ${P}`}>
+              Jedinú výnimku tvorí <strong>mapa Google na stránke Kontakt</strong>. Ak si ju
+              zobrazíte, Google si svoje vlastné cookies nastaviť môže. Bez vášho súhlasu sa
+              nenačíta — podrobnosti nižšie.
             </p>
           </section>
 
