@@ -2,6 +2,7 @@ import React from "react";
 import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
+import { openCookieSettings, useCookieConsent } from "@/components/aure/CookieConsent";
 import {
   ADDRESS,
   EMAIL,
@@ -13,6 +14,7 @@ import {
 
 const PHONE_HREF = `tel:${PHONE_E164}`;
 const MAP_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
+const MAP_LINK = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}`;
 
 const socials = [
   { label: "Instagram", href: INSTAGRAM_URL, Icon: Instagram },
@@ -20,6 +22,8 @@ const socials = [
 ];
 
 export default function Contact() {
+  const mapAllowed = useCookieConsent().functional;
+
   return (
     <div className="bg-[hsl(var(--chrome))]">
       <Navbar />
@@ -90,13 +94,36 @@ export default function Contact() {
             {/* Map */}
             <div className="lg:col-span-7">
               <div className="max-w-[30rem] aspect-[3/4] overflow-hidden rounded-2xl bg-[hsl(var(--steel))] shadow-[0_24px_60px_-30px_rgba(34,25,25,0.45)] ring-1 ring-[hsl(var(--steel))]/60">
-                <iframe
-                  title="Mapa — AURE Studio, Fándlyho 1, Košice"
-                  src={MAP_EMBED}
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen />
+                {mapAllowed ? (
+                  <iframe
+                    title="Mapa — AURE Studio, Fándlyho 1, Košice"
+                    src={MAP_EMBED}
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-5 px-8 text-center">
+                    <MapPin className="w-8 h-8 text-[hsl(var(--burgundy))]" />
+                    <p className="text-sm leading-relaxed text-[hsl(var(--obsidian))]/70">
+                      Mapa sa načíta z Google. Aby sme jej neposlali vaše údaje bez dovolenia,
+                      zobrazíme ju až po vašom súhlase.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={openCookieSettings}
+                      className="inline-flex items-center px-7 py-3 text-xs uppercase tracking-[0.25em] bg-[hsl(var(--burgundy))] text-[hsl(var(--chrome))] hover:bg-[hsl(var(--obsidian))] transition-colors">
+                      Zobraziť mapu
+                    </button>
+                    <a
+                      href={MAP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs underline underline-offset-4 text-[hsl(var(--obsidian))]/50 hover:text-[hsl(var(--burgundy))] transition-colors">
+                      Alebo otvoriť mapu v novom okne
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -3,9 +3,37 @@ import { Cookie, X } from "lucide-react";
 
 const STORAGE_KEY = "aure_cookie_consent";
 const SETTINGS_EVENT = "aure:open-cookie-settings";
+const CHANGED_EVENT = "aure:cookie-consent-changed";
+
+const DEFAULT_PREFS = { necessary: true, functional: false, analytics: false };
+
+const readConsent = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? { ...DEFAULT_PREFS, ...JSON.parse(stored) } : DEFAULT_PREFS;
+  } catch {
+    return DEFAULT_PREFS;
+  }
+};
 
 export const openCookieSettings = () =>
   window.dispatchEvent(new Event(SETTINGS_EVENT));
+
+export function useCookieConsent() {
+  const [consent, setConsent] = useState(readConsent);
+
+  useEffect(() => {
+    const sync = () => setConsent(readConsent());
+    window.addEventListener(CHANGED_EVENT, sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener(CHANGED_EVENT, sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, []);
+
+  return consent;
+}
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -43,6 +71,7 @@ export default function CookieConsent() {
 
   const persist = (value) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    window.dispatchEvent(new Event(CHANGED_EVENT));
     setVisible(false);
   };
 
