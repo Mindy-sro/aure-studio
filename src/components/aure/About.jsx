@@ -10,19 +10,23 @@ export default function About({ interiorImage, atmosphereImage }) {
           <div
             className="lg:col-span-7 relative bg-[hsl(var(--obsidian))] text-[hsl(var(--chrome))] px-6 py-12 lg:px-14 lg:py-16 flex flex-col justify-center lg:diagonal-clip">
             
-            <p className="text-xs uppercase tracking-[0.3em] text-[hsl(var(--chrome))]/50 mb-4">04 — Štúdio</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-[hsl(var(--chrome))]/50 mb-4">04 — CREATIVE STUDIO</p>
             <h2 className="font-heading font-light text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] text-[hsl(var(--chrome))]">
               Tekutý<br />minimalizmus
             </h2>
-            <p className="mt-8 text-base leading-[1.7] text-[hsl(var(--chrome))]/75 max-w-md">
-              AURE STUDIO je priestor, kde sa nechtové umenie stretáva s priemyselnou presnosťou.
-              Odmietame preplnené „salóny" a tomu zodpovedajúcemu klišé — inšpirujeme sa ateliérmi
-              architektonických štúdií. Každý detail je premyslený, každý výsledok stojí zato.
-            </p>
+            <div className="mt-8 space-y-5 text-base leading-[1.7] text-[hsl(var(--chrome))]/75 max-w-md">
+              <p>
+                AURE STUDIO je priestor, kde sa nechtové umenie stretáva s priemyselnou presnosťou.
+                Odmietame preplnenosť klasických salónov a hľadáme inšpiráciu v čistote a atmosfére
+                architektonických ateliérov.
+              </p>
+              <p>Každý detail má svoj význam. Od materiálov a svetla až po samotnú prácu.</p>
+              <p>Minimalistický priestor. Precízna technika. Výsledok, ktorý nepotrebuje nič navyše.</p>
+            </div>
 
             <dl className="mt-12 grid grid-cols-1 gap-4">
               <div className="flex items-baseline gap-4 border-t border-[hsl(var(--chrome))]/15 pt-4">
-                <dt className="font-heading text-4xl w-16 text-[hsl(var(--steel))]">1</dt>
+                <dt className="font-heading text-4xl w-16 text-[hsl(var(--steel))]">01</dt>
                 <dd className="text-xs uppercase tracking-[0.2em] text-[hsl(var(--chrome))]/60">rituál pre každú ruku</dd>
               </div>
               <div className="flex items-baseline gap-4 border-t border-[hsl(var(--chrome))]/15 pt-4">

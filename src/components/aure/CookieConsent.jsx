@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Cookie, X } from "lucide-react";
 
 const STORAGE_KEY = "aure_cookie_consent";
+const SETTINGS_EVENT = "aure:open-cookie-settings";
+
+export const openCookieSettings = () =>
+  window.dispatchEvent(new Event(SETTINGS_EVENT));
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -18,6 +22,23 @@ export default function CookieConsent() {
       const t = setTimeout(() => setVisible(true), 600);
       return () => clearTimeout(t);
     }
+  }, []);
+
+  useEffect(() => {
+    const reopen = () => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          setPrefs((p) => ({ ...p, ...JSON.parse(stored) }));
+        } catch {
+          setPrefs({ necessary: true, functional: false, analytics: false });
+        }
+      }
+      setSettingsOpen(true);
+      setVisible(true);
+    };
+    window.addEventListener(SETTINGS_EVENT, reopen);
+    return () => window.removeEventListener(SETTINGS_EVENT, reopen);
   }, []);
 
   const persist = (value) => {

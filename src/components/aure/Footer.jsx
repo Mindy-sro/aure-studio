@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/aure/Logo";
 import { Instagram, Facebook } from "lucide-react";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
+import { openCookieSettings } from "@/components/aure/CookieConsent";
 
 export default function Footer() {
   return (
@@ -37,10 +39,10 @@ export default function Footer() {
           <div className="md:col-span-2">
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-[hsl(var(--steel))] mb-4">Sledovať</p>
             <div className="flex items-center gap-4">
-              <a href="https://instagram.com/aurestudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://facebook.com/aurestudio" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">
+              <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
@@ -56,6 +58,13 @@ export default function Footer() {
               className="underline underline-offset-2 hover:text-[hsl(var(--chrome))] transition-colors normal-case tracking-[0.15em]">
               Zásady cookies
             </Link>
+            <span aria-hidden>·</span>
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="underline underline-offset-2 hover:text-[hsl(var(--chrome))] transition-colors normal-case tracking-[0.15em]">
+              Nastavenia cookies
+            </button>
             <span aria-hidden>·</span>
             <p>Všetky práva vyhradené · Presnosť ako rituál</p>
           </div>

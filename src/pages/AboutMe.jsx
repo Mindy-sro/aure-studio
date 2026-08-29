@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
 import { Image } from "@/components/ui/image";
@@ -50,38 +51,42 @@ export default function AboutMe() {
               <div className="steel-rule mb-10" />
               <p className="text-lg leading-relaxed text-[hsl(var(--obsidian))]/85">
                 „Nechty pre mňa nie sú módnym doplnkom, ale architektúrou v mierke jednej ruky.
-                Každý tvar, každý prechod a každá línia nesie zámer."
+                Každý tvar, každý prechod a každá línia nesie zámer.“
               </p>
               <div className="mt-8 space-y-5 text-base leading-relaxed text-[hsl(var(--obsidian))]/70">
-                <p>Hana založila AURE Studio s jednou víziou: pretaviť  presnosť nerezovej ocele do jemnej choreografie nechtového umenia. 
-
-
-
-
+                <p>
+                  Hana založila AURE Studio s jednou víziou: pretaviť presnosť nerezovej ocele
+                  do jemnej choreografie nechtového umenia.
                 </p>
-                <p>Dnes pracuje výhradne s lakmi prémiovej kvality . Verí, že rituál je rovnako dôležitý ako výsledok — preto každý klient odchádza s pocitom, že bol súčasťom niečoho výnimočného.
-
-
-
+                <p>
+                  Dnes pracuje výhradne s lakmi prémiovej kvality. Verí, že rituál je rovnako
+                  dôležitý ako výsledok — preto každý klient odchádza s pocitom, že bol súčasťou
+                  niečoho výnimočného.
                 </p>
-                <p>Okrem práce v štúdiu sa neustále vzdeláva a zlepšuje, aby mohla prínosným elementom pre V'
-
-
+                <p>
+                  Okrem práce v štúdiu sa neustále vzdeláva a zdokonaľuje svoje techniky, aby mohla
+                  byť prínosným elementom pre každého, kto jej zverí svoje ruky. Venuje pozornosť
+                  detailom, ktoré možno na prvý pohľad nie sú viditeľné, no práve ony vytvárajú
+                  výsledok, ktorý pôsobí prirodzene, čisto a dokonale.
+                </p>
+                <p>
+                  Pre Hanu je AURE Studio viac než miesto, kde vznikajú krásne nechty. Je to
+                  priestor, v ktorom sa spája precíznosť, estetika a pokoj — a kde má každý detail
+                  svoje miesto.
                 </p>
               </div>
 
               <div className="mt-12 flex flex-wrap gap-4">
-                <a
-                  href="/o-mne"
+                <Link
+                  to="/#studio"
                   className="inline-flex items-center px-8 py-4 text-xs uppercase tracking-[0.25em] bg-[hsl(var(--burgundy))] text-[hsl(var(--chrome))] hover:bg-[hsl(var(--obsidian))] transition-colors">
                   CREATIVE STUDIO
-                </a>
-                <a
-                  href="/"
+                </Link>
+                <Link
+                  to="/"
                   className="inline-flex items-center px-8 py-4 text-xs uppercase tracking-[0.25em] border border-[hsl(var(--obsidian))]/30 text-[hsl(var(--obsidian))] hover:bg-[hsl(var(--obsidian))] hover:text-[hsl(var(--chrome))] transition-colors">
-                  
                   Späť domov
-                </a>
+                </Link>
               </div>
             </div>
           </div>

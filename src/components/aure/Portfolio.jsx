@@ -34,7 +34,7 @@ export default function Portfolio({ portfolioImages }) {
           {imgs.slice(0, 3).map((src, i) =>
           <figure
             key={i}
-            className={`group relative overflow-hidden bg-[hsl(var(--steel))]/10 ${layout[i % layout.length]}`}>
+            className={`group relative overflow-hidden rounded-2xl ring-1 ring-[hsl(var(--steel))]/25 bg-[hsl(var(--steel))]/10 ${layout[i % layout.length]}`}>
             
               <Image
               src={src}
@@ -42,7 +42,7 @@ export default function Portfolio({ portfolioImages }) {
               fittingType="fill"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             
-              <figcaption className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-[hsl(var(--obsidian))]/90 to-transparent">
+              <figcaption className="absolute inset-0 flex items-end p-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-[hsl(var(--obsidian))]/90 to-transparent">
                 <span className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--chrome))]">
                   {techniques[i % techniques.length]}
                 </span>

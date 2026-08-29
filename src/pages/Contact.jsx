@@ -2,13 +2,16 @@ import React from "react";
 import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
+import {
+  ADDRESS,
+  EMAIL,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+  PHONE_E164,
+} from "@/lib/site";
 
-const ADDRESS = "Fándlyho 1, 040 17 Košice";
-const PHONE_DISPLAY = "+421 904 659 298";
-const PHONE_HREF = "tel:+421904659298";
-const EMAIL = "info@aurestudio.sk";
-const INSTAGRAM_URL = "https://instagram.com/aurestudio";
-const FACEBOOK_URL = "https://facebook.com/aurestudio";
+const PHONE_HREF = `tel:${PHONE_E164}`;
 const MAP_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
 
 const socials = [
@@ -48,6 +51,21 @@ export default function Contact() {
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--obsidian))]/50">E-mail</p>
                   <a href={`mailto:${EMAIL}`} className="mt-1 block text-base text-[hsl(var(--obsidian))]/85 hover:text-[hsl(var(--burgundy))] transition-colors">{EMAIL}</a>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--obsidian))]/50 mb-4">Uložiť kontakt</p>
+                <div className="flex items-center gap-5">
+                  <img
+                    src="/images/kontakt-qr.svg"
+                    alt="QR kód s kontaktom na AURE Studio"
+                    width={128}
+                    height={128}
+                    className="w-32 h-32 shrink-0" />
+                  <p className="text-sm leading-relaxed text-[hsl(var(--obsidian))]/60 max-w-[14rem]">
+                    Naskenujte fotoaparátom telefónu a kontakt sa uloží priamo do adresára.
+                  </p>
                 </div>
               </div>
 
