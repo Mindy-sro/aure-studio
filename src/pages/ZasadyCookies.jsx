@@ -24,13 +24,6 @@ const CATEGORIES = [
 
 const STORED = [
   {
-    name: "aure_cookie_consent",
-    kind: "Lokálne úložisko prehliadača",
-    origin: "aurestudio.sk",
-    retention: "Do vymazania v prehliadači",
-    desc: "Uchováva vaše rozhodnutie z lišty o súhlase. Neobsahuje meno, e-mail ani žiadny údaj, podľa ktorého by vás bolo možné identifikovať. Neodosiela sa na server.",
-  },
-  {
     name: "Údaje mapy Google",
     kind: "Lokálne úložisko prehliadača",
     origin: "google.com",
@@ -107,9 +100,14 @@ export default function ZasadyCookies() {
               údaje o vašom správaní.
             </p>
             <p className={`mt-3 ${P}`}>
-              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie o súhlase. Okrem toho
-              môže po vašom súhlase ukladať vlastné údaje spoločnosť Google prostredníctvom mapy
-              na stránke Kontakt.
+              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
+              Zostáva výhradne vo vašom prehliadači, neodosiela sa na server a neobsahuje žiadny
+              údaj, podľa ktorého by vás bolo možné identifikovať. Slúži len na to, aby sme sa vás
+              nepýtali pri každej návšteve znova.
+            </p>
+            <p className={`mt-3 ${P}`}>
+              Okrem toho môže po vašom súhlase ukladať vlastné údaje spoločnosť Google
+              prostredníctvom mapy na stránke Kontakt. Tie sú uvedené nižšie.
             </p>
           </section>
 
