@@ -4,31 +4,61 @@ import Footer from "@/components/aure/Footer";
 import { openCookieSettings } from "@/components/aure/CookieConsent";
 import { EMAIL } from "@/lib/site";
 
-const CATEGORIES = [
+const TYPES = [
   {
-    name: "Nevyhnutné",
-    state: "Vždy zapnuté",
-    desc: "Zabezpečujú základné fungovanie stránky. Do tejto kategórie patrí uloženie vášho rozhodnutia o súhlase — bez neho by sme sa vás pýtali pri každej návšteve znova.",
+    name: "Potrebné",
+    used: true,
+    state: "Používame — vždy zapnuté",
+    desc: "Zabezpečujú základné fungovanie stránky a nedajú sa vypnúť. Na tomto webe do tejto kategórie patrí jediná položka: uloženie vášho rozhodnutia z lišty o súhlase.",
   },
   {
     name: "Funkčné",
-    state: "Voliteľné",
-    desc: "Umožňujú zobraziť obsah tretích strán priamo na stránke. Na tomto webe ide výhradne o mapu Google na stránke Kontakt.",
+    used: true,
+    state: "Používame — voliteľné",
+    desc: "Umožňujú zobraziť obsah tretích strán priamo na stránke, napríklad mapy alebo videá. Na tomto webe ide výhradne o mapu Google na stránke Kontakt.",
   },
   {
-    name: "Analytické",
-    state: "Voliteľné, momentálne nevyužité",
-    desc: "Slúžia na meranie návštevnosti. Tento web žiadny analytický nástroj nepoužíva, takže táto kategória zatiaľ nič neaktivuje. Ponechávame ju pre prípad, že sa meranie v budúcnosti zavedie.",
+    name: "Analytika",
+    used: false,
+    state: "Nepoužívame",
+    desc: "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Tento web žiadny analytický nástroj nemá.",
+  },
+  {
+    name: "Reklama",
+    used: false,
+    state: "Nepoužívame",
+    desc: "Slúžia na cielenie reklamy a sledovanie návštevníkov naprieč webmi. Tento web žiadny reklamný systém nepoužíva.",
+  },
+  {
+    name: "Výkon",
+    used: false,
+    state: "Nepoužívame",
+    desc: "Sledujú rýchlosť načítania a technické správanie stránky s cieľom zlepšiť jej fungovanie. Tento web nič také nemeria.",
+  },
+  {
+    name: "Iné",
+    used: false,
+    state: "Nepoužívame",
+    desc: "Nezaradené súbory, ktoré ešte neboli priradené do žiadnej kategórie. Na tomto webe sa nevyskytujú.",
   },
 ];
 
 const STORED = [
   {
+    name: "aure_cookie_consent",
+    kind: "Lokálne úložisko prehliadača",
+    origin: "aurestudio.sk",
+    category: "Potrebné",
+    retention: "Do vymazania v prehliadači",
+    desc: "Uchováva vaše rozhodnutie z lišty o súhlase, aby sme sa vás nepýtali pri každej návšteve znova. Zostáva vo vašom prehliadači, neodosiela sa na server a neobsahuje údaj, podľa ktorého by vás bolo možné identifikovať.",
+  },
+  {
     name: "Údaje mapy Google",
     kind: "Lokálne úložisko prehliadača",
     origin: "google.com",
+    category: "Funkčné",
     retention: "Určuje Google",
-    desc: "Vznikajú až po udelení súhlasu s funkčnou kategóriou a načítaní mapy. Pri našom meraní išlo o položky v lokálnom úložisku, nie o súbory cookies. Rozsah aj trvanlivosť týchto údajov určuje spoločnosť Google a môže ich kedykoľvek zmeniť.",
+    desc: "Vznikajú až po udelení súhlasu s funkčnou kategóriou a načítaní mapy. Pri našom meraní išlo o položky v lokálnom úložisku, nie o súbory cookies. Rozsah aj trvanlivosť určuje spoločnosť Google a môže ich kedykoľvek zmeniť.",
   },
 ];
 
@@ -41,7 +71,7 @@ const THIRD_PARTIES = [
   {
     name: "Google Fonts",
     where: "Všetky stránky",
-    what: "Typografia webu. Písma sa sťahujú zo serverov Google, čím sa im odošle vaša IP adresa. Súbory cookies sa pri tom nenastavujú. Túto službu nie je možné podmieniť súhlasom bez toho, aby sa narušilo zobrazenie stránky.",
+    what: "Typografia webu. Písma sa sťahujú zo serverov Google, čím sa mu odošle vaša IP adresa. Súbory cookies sa pri tom nenastavujú. Túto službu nie je možné podmieniť súhlasom bez toho, aby sa narušilo zobrazenie stránky.",
   },
 ];
 
@@ -73,30 +103,39 @@ export default function ZasadyCookies() {
           <div className="steel-rule my-8" />
 
           <p className={P}>
-            Tieto zásady vysvetľujú, čo sú súbory cookies, aké údaje sa pri návšteve tohto webu
-            ukladajú do vášho zariadenia, na aký účel a ako môžete svoje nastavenia kedykoľvek
-            zmeniť. Opisujú skutočný stav tohto webu ku dňu poslednej aktualizácie.
+            Tieto zásady vysvetľujú, čo sú súbory cookies, ktoré typy z nich na tomto webe používame
+            a ktoré nie, aké údaje sa pri návšteve ukladajú do vášho zariadenia a ako môžete svoje
+            nastavenia kedykoľvek zmeniť.
+          </p>
+          <p className={`mt-4 ${P}`}>
+            Opisujú skutočný stav tohto webu. Ak sa niektorá zo služieb v budúcnosti zmení alebo
+            pribudne, upravíme aj tento dokument.
           </p>
 
           <section className="mt-12">
-            <SectionTitle>Čo sú súbory cookies</SectionTitle>
+            <SectionTitle>Čo rozumieme pod súbormi cookies</SectionTitle>
             <p className={`mt-3 ${P}`}>
               Súbory cookies sú malé textové súbory, ktoré webová stránka ukladá do vášho zariadenia
               pri jej načítaní. Umožňujú stránke rozpoznať vaše zariadenie pri ďalšej návšteve
               a zapamätať si vaše nastavenia.
             </p>
             <p className={`mt-3 ${P}`}>
-              Podobným spôsobom funguje aj takzvané lokálne úložisko prehliadača. Technicky nejde
-              o súbory cookies, no z hľadiska ochrany súkromia sa posudzuje rovnako, pretože aj ono
-              ukladá informácie do vášho zariadenia. Preto ho v týchto zásadách uvádzame spolu s nimi.
+              Podobným spôsobom funguje aj lokálne úložisko prehliadača. Technicky nejde o súbory
+              cookies, no z hľadiska ochrany súkromia sa posudzuje rovnako, pretože aj ono ukladá
+              informácie do vášho zariadenia. Preto ho v týchto zásadách uvádzame spolu s nimi.
             </p>
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Ako ich používame</SectionTitle>
+            <SectionTitle>Načo slúžia a ako ich používame</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame analytické,
-              reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
+              Rozlišujeme súbory prvej strany, ktoré vytvára samotná navštívená stránka, a súbory
+              tretích strán, ktoré vytvárajú externé služby vložené do stránky.
+            </p>
+            <p className={`mt-3 ${P}`}>
+              Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame
+              analytické, reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
+              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
             </p>
             <p className={`mt-3 ${P}`}>
               To však neznamená, že sa k tretím stranám nedostane nič. Pretože web načítava písma
@@ -104,29 +143,24 @@ export default function ZasadyCookies() {
               tak dozvie, že zo zariadenia s touto adresou bola stránka načítaná. Podrobnosti nájdete
               v sekcii o tretích stranách.
             </p>
-            <p className={`mt-3 ${P}`}>
-              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
-              Zostáva výhradne vo vašom prehliadači, neodosiela sa na server a neobsahuje žiadny
-              údaj, podľa ktorého by vás bolo možné identifikovať. Slúži len na to, aby sme sa vás
-              nepýtali pri každej návšteve znova.
-            </p>
-            <p className={`mt-3 ${P}`}>
-              Okrem toho môže po vašom súhlase ukladať vlastné údaje spoločnosť Google
-              prostredníctvom mapy na stránke Kontakt. Tie sú uvedené nižšie.
-            </p>
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Kategórie a vaše nastavenia</SectionTitle>
+            <SectionTitle>Aké typy súborov cookies používame</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              V lište o súhlase si môžete jednotlivé kategórie povoliť alebo odmietnuť samostatne.
+              Nasledujúce kategórie sú bežne zaužívané. Pri každej uvádzame, či ju tento web
+              skutočne využíva.
             </p>
             <div className="mt-5 space-y-5">
-              {CATEGORIES.map(({ name, state, desc }) => (
+              {TYPES.map(({ name, used, state, desc }) => (
                 <div key={name} className="border-t border-[hsl(var(--steel))]/50 pt-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <p className="text-[0.9rem] text-[hsl(var(--obsidian))]/85">{name}</p>
-                    <p className={LABEL}>{state}</p>
+                    <p className={`text-[0.9rem] ${used ? "text-[hsl(var(--obsidian))]/85" : "text-[hsl(var(--obsidian))]/45"}`}>
+                      {name}
+                    </p>
+                    <p className={used ? "text-[0.6rem] uppercase tracking-[0.2em] text-[hsl(var(--burgundy))]" : LABEL}>
+                      {state}
+                    </p>
                   </div>
                   <p className={`mt-2 ${P}`}>{desc}</p>
                 </div>
@@ -135,12 +169,15 @@ export default function ZasadyCookies() {
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Čo sa konkrétne ukladá</SectionTitle>
+            <SectionTitle>Zoznam toho, čo sa ukladá</SectionTitle>
+            <p className={`mt-3 ${P}`}>
+              Nižšie uvedený zoznam podrobne popisuje všetko, čo tento web ukladá do vášho zariadenia.
+            </p>
             <div className="mt-5 space-y-5">
-              {STORED.map(({ name, kind, origin, retention, desc }) => (
+              {STORED.map(({ name, kind, origin, category, retention, desc }) => (
                 <div key={name} className="border-t border-[hsl(var(--steel))]/50 pt-4">
                   <p className="font-mono text-[0.78rem] text-[hsl(var(--obsidian))]/85">{name}</p>
-                  <dl className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-y-2 gap-x-4">
+                  <dl className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4">
                     <div>
                       <dt className={LABEL}>Typ</dt>
                       <dd className={`mt-1 ${P}`}>{kind}</dd>
@@ -148,6 +185,10 @@ export default function ZasadyCookies() {
                     <div>
                       <dt className={LABEL}>Doména</dt>
                       <dd className={`mt-1 ${P}`}>{origin}</dd>
+                    </div>
+                    <div>
+                      <dt className={LABEL}>Kategória</dt>
+                      <dd className={`mt-1 ${P}`}>{category}</dd>
                     </div>
                     <div>
                       <dt className={LABEL}>Trvanlivosť</dt>
@@ -179,9 +220,11 @@ export default function ZasadyCookies() {
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Ako zmeniť nastavenia</SectionTitle>
+            <SectionTitle>Ako môžem zmeniť nastavenia</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Svoj súhlas môžete kedykoľvek zmeniť alebo odvolať. Zmena sa prejaví okamžite.
+              Svoj súhlas môžete kedykoľvek zmeniť alebo odvolať. V lište nájdete prepínače pre
+              kategórie, ktoré tento web používa alebo môže v budúcnosti používať. Zmena sa prejaví
+              okamžite.
             </p>
             <button
               type="button"
