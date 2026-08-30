@@ -1,5 +1,5 @@
 export const STUDIO_NAME = "AURE STUDIO";
-export const CONTACT_NAME = "AURE STUDIO — Blašková";
+export const CONTACT_NAME = "AURE STUDIO - Blašková";
 
 export const ADDRESS_STREET = "Fándlyho 1";
 export const ADDRESS_CITY = "Košice";
