@@ -4,23 +4,58 @@ import Footer from "@/components/aure/Footer";
 import { openCookieSettings } from "@/components/aure/CookieConsent";
 import { EMAIL } from "@/lib/site";
 
-const REMOVE_LINKS = [
-  ["Mozilla Firefox", "https://support.mozilla.org/sk/kb/odstranenie-cookies"],
-  ["Google Chrome", "https://support.google.com/chrome/answer/95647?hl=sk"],
-  ["Microsoft Edge", "https://support.microsoft.com/sk-sk/help/4027947/windows-delete-cookies"],
+const CATEGORIES = [
+  {
+    name: "Nevyhnutné",
+    state: "Vždy zapnuté",
+    desc: "Zabezpečujú základné fungovanie stránky. Do tejto kategórie patrí uloženie vášho rozhodnutia o súhlase — bez neho by sme sa vás pýtali pri každej návšteve znova.",
+  },
+  {
+    name: "Funkčné",
+    state: "Voliteľné",
+    desc: "Umožňujú zobraziť obsah tretích strán priamo na stránke. Na tomto webe ide výhradne o mapu Google na stránke Kontakt.",
+  },
+  {
+    name: "Analytické",
+    state: "Voliteľné, momentálne nevyužité",
+    desc: "Slúžia na meranie návštevnosti. Tento web žiadny analytický nástroj nepoužíva, takže táto kategória zatiaľ nič neaktivuje. Ponechávame ju pre prípad, že sa meranie v budúcnosti zavedie.",
+  },
+];
+
+const STORED = [
+  {
+    name: "aure_cookie_consent",
+    kind: "Lokálne úložisko prehliadača",
+    origin: "aurestudio.sk",
+    retention: "Do vymazania v prehliadači",
+    desc: "Uchováva vaše rozhodnutie z lišty o súhlase. Neobsahuje meno, e-mail ani žiadny údaj, podľa ktorého by vás bolo možné identifikovať. Neodosiela sa na server.",
+  },
+  {
+    name: "Údaje mapy Google",
+    kind: "Lokálne úložisko prehliadača",
+    origin: "google.com",
+    retention: "Určuje Google",
+    desc: "Vznikajú až po udelení súhlasu s funkčnou kategóriou a načítaní mapy. Pri našom meraní išlo o položky v lokálnom úložisku, nie o súbory cookies. Rozsah aj trvanlivosť týchto údajov určuje spoločnosť Google a môže ich kedykoľvek zmeniť.",
+  },
 ];
 
 const THIRD_PARTIES = [
   {
-    name: "Mapa Google",
-    where: "stránka Kontakt",
-    what: "Mapa sa načíta až po vašom súhlase. Kým ho nedáte, s Googlom neprebehne žiadna komunikácia. Po načítaní sa Googlu odošle vaša IP adresa a uloží si údaje do vášho prehliadača pod svojou doménou — pri našom meraní išlo o lokálne úložisko, nie o súbory cookies. Google si rozsah týchto údajov určuje sám a môže ho kedykoľvek zmeniť.",
+    name: "Google Maps",
+    where: "Stránka Kontakt",
+    what: "Interaktívna mapa s polohou štúdia. Načíta sa až po vašom súhlase — dovtedy s Googlom neprebehne žiadna komunikácia. Po načítaní sa Googlu odošle vaša IP adresa.",
   },
   {
     name: "Google Fonts",
-    where: "všetky stránky",
-    what: "Písma sa sťahujú zo serverov Google. Pri tom sa Googlu odošle vaša IP adresa. Cookies sa pri tom nenastavujú.",
+    where: "Všetky stránky",
+    what: "Typografia webu. Písma sa sťahujú zo serverov Google, čím sa im odošle vaša IP adresa. Súbory cookies sa pri tom nenastavujú. Túto službu nie je možné podmieniť súhlasom bez toho, aby sa narušilo zobrazenie stránky.",
   },
+];
+
+const REMOVE_LINKS = [
+  ["Mozilla Firefox", "https://support.mozilla.org/sk/kb/odstranenie-cookies"],
+  ["Google Chrome", "https://support.google.com/chrome/answer/95647?hl=sk"],
+  ["Microsoft Edge", "https://support.microsoft.com/sk-sk/help/4027947/windows-delete-cookies"],
 ];
 
 function SectionTitle({ children }) {
@@ -30,6 +65,7 @@ function SectionTitle({ children }) {
 }
 
 const P = "text-[0.82rem] leading-relaxed text-[hsl(var(--obsidian))]/70";
+const LABEL = "text-[0.6rem] uppercase tracking-[0.2em] text-[hsl(var(--obsidian))]/40";
 
 export default function ZasadyCookies() {
   return (
@@ -39,56 +75,99 @@ export default function ZasadyCookies() {
         <div className="mx-auto max-w-3xl px-6 lg:px-10">
           <p className="text-[0.6rem] uppercase tracking-[0.3em] text-[hsl(var(--steel))]">— O zásadách —</p>
           <h1 className="font-heading text-4xl md:text-5xl text-[hsl(var(--obsidian))] mt-3 leading-tight">
-            Zásady používania cookies
+            Základné zásady používania cookies
           </h1>
           <div className="steel-rule my-8" />
 
           <p className={P}>
-            Táto stránka vysvetľuje, čo sa pri návšteve nášho webu ukladá do vášho zariadenia
-            a ktoré služby tretích strán sa načítavajú. Opisuje skutočný stav tohto webu —
-            nie všeobecný vzor.
+            Tieto zásady vysvetľujú, čo sú súbory cookies, aké údaje sa pri návšteve tohto webu
+            ukladajú do vášho zariadenia, na aký účel a ako môžete svoje nastavenia kedykoľvek
+            zmeniť. Opisujú skutočný stav tohto webu ku dňu poslednej aktualizácie.
           </p>
 
           <section className="mt-12">
-            <SectionTitle>Zhrnutie</SectionTitle>
+            <SectionTitle>Čo sú súbory cookies</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              <strong>Sami nenastavujeme žiadne súbory cookies.</strong> Nepoužívame analytiku,
-              reklamné ani sledovacie nástroje. Nezhromažďujeme údaje o vašom správaní a nikomu
-              ich neodovzdávame.
+              Súbory cookies sú malé textové súbory, ktoré webová stránka ukladá do vášho zariadenia
+              pri jej načítaní. Umožňujú stránke rozpoznať vaše zariadenie pri ďalšej návšteve
+              a zapamätať si vaše nastavenia.
             </p>
             <p className={`mt-3 ${P}`}>
-              Jedinú výnimku tvorí <strong>mapa Google na stránke Kontakt</strong>. Ak si ju
-              zobrazíte, Google si do vášho prehliadača uloží vlastné údaje. Bez vášho súhlasu sa
-              nenačíta — podrobnosti nižšie.
-            </p>
-          </section>
-
-          <section className="mt-10">
-            <SectionTitle>Čo si ukladáme</SectionTitle>
-            <p className={`mt-3 ${P}`}>
-              Jedinú vec — vašu voľbu z lišty o súhlase. Ukladá sa do lokálneho úložiska prehliadača
-              (<span className="font-mono text-[0.75rem]">localStorage</span>) pod názvom{" "}
-              <span className="font-mono text-[0.75rem]">aure_cookie_consent</span>. Slúži len na to,
-              aby sme sa vás nepýtali pri každej návšteve znova.
-            </p>
-            <p className={`mt-3 ${P}`}>
-              Táto položka zostáva výhradne vo vašom zariadení. Na rozdiel od súborov cookies sa
-              neodosiela na server pri žiadnej požiadavke. Neobsahuje meno, e-mail ani nič, podľa
-              čoho by sa dalo zistiť, kto ste.
+              Podobným spôsobom funguje aj takzvané lokálne úložisko prehliadača. Technicky nejde
+              o súbory cookies, no z hľadiska ochrany súkromia sa posudzuje rovnako, pretože aj ono
+              ukladá informácie do vášho zariadenia. Preto ho v týchto zásadách uvádzame spolu s nimi.
             </p>
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Služby tretích strán</SectionTitle>
+            <SectionTitle>Ako ich používame</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Web načítava obsah z dvoch externých služieb. Obe prevádzkuje spoločnosť Google.
+              Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame analytické,
+              reklamné ani sledovacie nástroje, nevytvárame profily návštevníkov a nikomu neodovzdávame
+              údaje o vašom správaní.
+            </p>
+            <p className={`mt-3 ${P}`}>
+              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie o súhlase. Okrem toho
+              môže po vašom súhlase ukladať vlastné údaje spoločnosť Google prostredníctvom mapy
+              na stránke Kontakt.
+            </p>
+          </section>
+
+          <section className="mt-10">
+            <SectionTitle>Kategórie a vaše nastavenia</SectionTitle>
+            <p className={`mt-3 ${P}`}>
+              V lište o súhlase si môžete jednotlivé kategórie povoliť alebo odmietnuť samostatne.
+            </p>
+            <div className="mt-5 space-y-5">
+              {CATEGORIES.map(({ name, state, desc }) => (
+                <div key={name} className="border-t border-[hsl(var(--steel))]/50 pt-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <p className="text-[0.9rem] text-[hsl(var(--obsidian))]/85">{name}</p>
+                    <p className={LABEL}>{state}</p>
+                  </div>
+                  <p className={`mt-2 ${P}`}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-10">
+            <SectionTitle>Čo sa konkrétne ukladá</SectionTitle>
+            <div className="mt-5 space-y-5">
+              {STORED.map(({ name, kind, origin, retention, desc }) => (
+                <div key={name} className="border-t border-[hsl(var(--steel))]/50 pt-4">
+                  <p className="font-mono text-[0.78rem] text-[hsl(var(--obsidian))]/85">{name}</p>
+                  <dl className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-y-2 gap-x-4">
+                    <div>
+                      <dt className={LABEL}>Typ</dt>
+                      <dd className={`mt-1 ${P}`}>{kind}</dd>
+                    </div>
+                    <div>
+                      <dt className={LABEL}>Doména</dt>
+                      <dd className={`mt-1 ${P}`}>{origin}</dd>
+                    </div>
+                    <div>
+                      <dt className={LABEL}>Trvanlivosť</dt>
+                      <dd className={`mt-1 ${P}`}>{retention}</dd>
+                    </div>
+                  </dl>
+                  <p className={`mt-3 ${P}`}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-10">
+            <SectionTitle>Spracovanie tretími stranami</SectionTitle>
+            <p className={`mt-3 ${P}`}>
+              Web načítava obsah z dvoch externých služieb. Obe prevádzkuje spoločnosť Google LLC.
             </p>
             <div className="mt-5 space-y-5">
               {THIRD_PARTIES.map(({ name, where, what }) => (
                 <div key={name} className="border-t border-[hsl(var(--steel))]/50 pt-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <p className="text-[0.9rem] text-[hsl(var(--obsidian))]/85">{name}</p>
-                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-[hsl(var(--obsidian))]/40">{where}</p>
+                    <p className={LABEL}>{where}</p>
                   </div>
                   <p className={`mt-2 ${P}`}>{what}</p>
                 </div>
@@ -97,9 +176,9 @@ export default function ZasadyCookies() {
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Ako zmeniť svoj súhlas</SectionTitle>
+            <SectionTitle>Ako zmeniť nastavenia</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Kedykoľvek. Stačí otvoriť nastavenia a voľbu upraviť — prejaví sa okamžite.
+              Svoj súhlas môžete kedykoľvek zmeniť alebo odvolať. Zmena sa prejaví okamžite.
             </p>
             <button
               type="button"
@@ -110,9 +189,9 @@ export default function ZasadyCookies() {
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Ako vymazať údaje z prehliadača</SectionTitle>
+            <SectionTitle>Ako odstrániť uložené údaje</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Uloženú voľbu aj všetky cookies iných stránok viete odstrániť priamo v prehliadači:
+              Uložené údaje aj súbory cookies iných stránok viete odstrániť priamo v prehliadači:
             </p>
             <ul className="mt-4 space-y-2">
               {REMOVE_LINKS.map(([label, href]) => (
@@ -130,9 +209,9 @@ export default function ZasadyCookies() {
           </section>
 
           <section className="mt-10">
-            <SectionTitle>Otázky</SectionTitle>
+            <SectionTitle>Kontakt</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Ak čomukoľvek nerozumiete alebo chcete vedieť viac, napíšte nám na{" "}
+              S otázkami k týmto zásadám sa na nás obráťte na{" "}
               <a
                 href={`mailto:${EMAIL}`}
                 className="underline underline-offset-2 hover:text-[hsl(var(--burgundy))] transition-colors">
