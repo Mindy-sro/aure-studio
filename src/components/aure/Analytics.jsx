@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCookieConsent } from "@/components/aure/CookieConsent";
-import { GA_MEASUREMENT_ID } from "@/lib/site";
+import { GA_CONFIGURED, GA_MEASUREMENT_ID } from "@/lib/site";
 
 const SCRIPT_ID = "ga-gtag";
 
@@ -21,7 +21,7 @@ export default function Analytics() {
   const { analytics } = useCookieConsent();
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID || !analytics) {
+    if (!GA_CONFIGURED || !analytics) {
       dropGaCookies();
       return;
     }

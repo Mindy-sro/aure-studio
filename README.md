@@ -16,17 +16,15 @@ Beží na http://localhost:5173
 
 ## Google Analytics
 
-Nastav `VITE_GA_MEASUREMENT_ID` (napr. `G-XXXXXXXXXX`) v `.env.local` alebo v prostredí buildu.
-Vzor je v `.env.example`.
+Meracie ID je v `src/lib/site.js` ako `GA_MEASUREMENT_ID`. Zatiaľ je tam zástupná hodnota
+`G-XXXXXXXXXX` — nahraď ju skutočným ID z Google Analytics.
 
-Táto jediná premenná riadi všetko naraz:
+Kým tam zástupná hodnota zostáva, skript sa nenačíta a žiadna `_ga` cookie nevznikne.
+Zásady cookies Analytics popisujú v oboch prípadoch; z ID sa odvodzuje len názov
+`_ga_<ID>` v zozname.
 
-- **prázdna** — gtag sa nenačíta a `/zasady-cookies` analytiku neuvádza
-- **vyplnená** — gtag sa načíta až po súhlase s analytickou kategóriou a zásady doplnia
-  `_ga`, `_ga_<ID>` aj sekciu o Google Analytics
-
-Text zásad je odvodený z tej istej konštanty ako správanie, takže nemôže tvrdiť niečo iné,
-než web reálne robí. Pri odvolaní súhlasu sa `_ga*` cookies odstránia.
+Po nahradení sa gtag načíta až po súhlase s analytickou kategóriou. Pri odvolaní súhlasu
+sa `_ga*` cookies odstránia.
 
 ## Build
 
