@@ -45,11 +45,11 @@ export default function Navbar() {
           to="/"
           aria-label="AURE Studio — domov"
           onClick={() => setOpen(false)}
-          className="group flex-shrink-0 sm:-ml-4 lg:-ml-8">
+          className="group flex-shrink-0">
           <Logo
-            height={isDesktop ? "13rem" : "5.5rem"}
+            size={isDesktop ? "3.3rem" : "2.6rem"}
             dark={!scrolled}
-            className="transition-opacity group-hover:opacity-70 max-w-[70vw] md:max-w-none"
+            className="transition-opacity group-hover:opacity-70"
           />
         </Link>
 

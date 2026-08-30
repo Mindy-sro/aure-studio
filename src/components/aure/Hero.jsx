@@ -19,7 +19,7 @@ export default function Hero({ heroImage }) {
           Nechtové štúdio · Presnosť ako architektúra
         </p>
         <div className="mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <p className="font-heading max-w-md text-xl md:text-2xl font-light leading-snug text-[hsl(var(--chrome))]">
+          <p className="font-logo max-w-md text-lg md:text-xl font-light leading-relaxed tracking-[0.02em] text-[hsl(var(--chrome))]">
             Malý detail, veľký rozdiel.<br />
             Tvorba nechtov je výnimočný rituál, ktorý radi spríjemníme profesionálnym prostredím.<br />
             Nechty s podpisom AURE.

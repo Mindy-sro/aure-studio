@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
-            <Logo height="4.2rem" dark />
+            <Logo size="2rem" dark />
             <p className="mt-4 text-[0.7rem] text-[hsl(var(--chrome))]/60 max-w-xs leading-relaxed">
               Nechtové štúdio. Industriálny luxus a tekutý minimalizmus.
             </p>
