@@ -108,6 +108,8 @@ const THIRD_PARTIES = [
   },
 ];
 
+const COUNT_WORDS = { 1: "jednej", 2: "dvoch", 3: "troch", 4: "štyroch" };
+
 const REMOVE_LINKS = [
   ["Mozilla Firefox", "https://support.mozilla.org/sk/kb/odstranenie-cookies"],
   ["Google Chrome", "https://support.google.com/chrome/answer/95647?hl=sk"],
@@ -165,16 +167,25 @@ export default function ZasadyCookies() {
               Rozlišujeme súbory prvej strany, ktoré vytvára samotná navštívená stránka, a súbory
               tretích strán, ktoré vytvárajú externé služby vložené do stránky.
             </p>
+            {ANALYTICS_ENABLED ? (
+              <p className={`mt-3 ${P}`}>
+                Tento web nastavuje vlastné súbory cookies <strong>jedine na meranie návštevnosti</strong>,
+                a to až po vašom súhlase. Reklamné ani inzertné systémy nepoužívame a nevytvárame
+                profily návštevníkov. Kým súhlas nedáte, ukladáme do vášho zariadenia jedinú
+                položku — vaše rozhodnutie z lišty.
+              </p>
+            ) : (
+              <p className={`mt-3 ${P}`}>
+                Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame
+                analytické, reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
+                Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
+              </p>
+            )}
             <p className={`mt-3 ${P}`}>
-              Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame
-              analytické, reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
-              Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
-            </p>
-            <p className={`mt-3 ${P}`}>
-              To však neznamená, že sa k tretím stranám nedostane nič. Pretože web načítava písma
-              a mapu zo serverov spoločnosti Google, odošle sa jej pri tom vaša IP adresa. Google sa
-              tak dozvie, že zo zariadenia s touto adresou bola stránka načítaná. Podrobnosti nájdete
-              v sekcii o tretích stranách.
+              To však neznamená, že sa k tretím stranám nedostane nič. Web načítava zo serverov
+              spoločnosti Google {ANALYTICS_ENABLED ? "písma, mapu aj meranie návštevnosti" : "písma a mapu"},
+              takže sa jej pri tom odošle vaša IP adresa. Google sa tak dozvie, že zo zariadenia
+              s touto adresou bola stránka načítaná. Podrobnosti nájdete v sekcii o tretích stranách.
             </p>
           </section>
 
@@ -237,7 +248,8 @@ export default function ZasadyCookies() {
           <section className="mt-10">
             <SectionTitle>Spracovanie tretími stranami</SectionTitle>
             <p className={`mt-3 ${P}`}>
-              Web načítava obsah z dvoch externých služieb. Obe prevádzkuje spoločnosť Google LLC.
+              Web načítava obsah z {COUNT_WORDS[THIRD_PARTIES.length] || THIRD_PARTIES.length} externých
+              služieb. Všetky prevádzkuje spoločnosť Google LLC.
             </p>
             <div className="mt-5 space-y-5">
               {THIRD_PARTIES.map(({ name, where, what }) => (

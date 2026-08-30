@@ -21,9 +21,7 @@ export default function Analytics() {
   const { analytics } = useCookieConsent();
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID) return;
-
-    if (!analytics) {
+    if (!GA_MEASUREMENT_ID || !analytics) {
       dropGaCookies();
       return;
     }
