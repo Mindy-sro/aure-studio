@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
 import { openCookieSettings } from "@/components/aure/CookieConsent";
-import { EMAIL } from "@/lib/site";
+import { ANALYTICS_ENABLED, EMAIL, GA_MEASUREMENT_ID } from "@/lib/site";
 
 const TYPES = [
   {
@@ -19,9 +19,11 @@ const TYPES = [
   },
   {
     name: "Analytika",
-    used: false,
-    state: "Nepoužívame",
-    desc: "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Tento web žiadny analytický nástroj nemá.",
+    used: ANALYTICS_ENABLED,
+    state: ANALYTICS_ENABLED ? "Používame — voliteľné" : "Zatiaľ nepoužívame",
+    desc: ANALYTICS_ENABLED
+      ? "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Používame na to službu Google Analytics. Načíta sa až po vašom súhlase; ak ho odmietnete alebo odvoláte, meranie sa nespustí a už uložené súbory odstránime."
+      : "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Tento web zatiaľ žiadny analytický nástroj nemá, takže táto kategória nič neaktivuje. Prepínač pre ňu v lište ponechávame pripravený pre prípad, že meranie zavedieme.",
   },
   {
     name: "Reklama",
@@ -43,6 +45,27 @@ const TYPES = [
   },
 ];
 
+const GA_COOKIES = ANALYTICS_ENABLED
+  ? [
+      {
+        name: "_ga",
+        kind: "Súbor cookie",
+        origin: "aurestudio.sk",
+        category: "Analytika",
+        retention: "2 roky",
+        desc: "Nastavuje ho Google Analytics. Prideľuje prehliadaču náhodné číslo, aby vedel odlíšiť nového návštevníka od vracajúceho sa. Vzniká až po vašom súhlase s analytickou kategóriou.",
+      },
+      {
+        name: `_ga_${GA_MEASUREMENT_ID.replace(/^G-/, "")}`,
+        kind: "Súbor cookie",
+        origin: "aurestudio.sk",
+        category: "Analytika",
+        retention: "2 roky",
+        desc: "Nastavuje ho Google Analytics. Uchováva stav aktuálnej návštevy, aby sa jednotlivé zobrazenia stránok dali spojiť do jednej relácie. Vzniká až po vašom súhlase s analytickou kategóriou.",
+      },
+    ]
+  : [];
+
 const STORED = [
   {
     name: "aure_cookie_consent",
@@ -60,9 +83,19 @@ const STORED = [
     retention: "Určuje Google",
     desc: "Vznikajú až po udelení súhlasu s funkčnou kategóriou a načítaní mapy. Pri našom meraní išlo o položky v lokálnom úložisku, nie o súbory cookies. Rozsah aj trvanlivosť určuje spoločnosť Google a môže ich kedykoľvek zmeniť.",
   },
+  ...GA_COOKIES,
 ];
 
 const THIRD_PARTIES = [
+  ...(ANALYTICS_ENABLED
+    ? [
+        {
+          name: "Google Analytics",
+          where: "Všetky stránky",
+          what: "Meranie návštevnosti. Načíta sa až po vašom súhlase s analytickou kategóriou — dovtedy sa skript vôbec nestiahne. Googlu sa odošle vaša IP adresa v skrátenej podobe, adresa navštívenej stránky a základné údaje o prehliadači. Ak súhlas odvoláte, meranie sa zastaví a uložené súbory odstránime.",
+        },
+      ]
+    : []),
   {
     name: "Google Maps",
     where: "Stránka Kontakt",

@@ -14,6 +14,20 @@ npm run dev
 
 Beží na http://localhost:5173
 
+## Google Analytics
+
+Nastav `VITE_GA_MEASUREMENT_ID` (napr. `G-XXXXXXXXXX`) v `.env.local` alebo v prostredí buildu.
+Vzor je v `.env.example`.
+
+Táto jediná premenná riadi všetko naraz:
+
+- **prázdna** — gtag sa nenačíta a `/zasady-cookies` analytiku neuvádza
+- **vyplnená** — gtag sa načíta až po súhlase s analytickou kategóriou a zásady doplnia
+  `_ga`, `_ga_<ID>` aj sekciu o Google Analytics
+
+Text zásad je odvodený z tej istej konštanty ako správanie, takže nemôže tvrdiť niečo iné,
+než web reálne robí. Pri odvolaní súhlasu sa `_ga*` cookies odstránia.
+
 ## Build
 
 ```bash

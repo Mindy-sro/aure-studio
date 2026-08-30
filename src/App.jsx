@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from '@/components/aure/CookieConsent';
+import Analytics from '@/components/aure/Analytics';
 // Add page imports here
 import Home from '@/pages/Home';
 import AboutMe from '@/pages/AboutMe';
@@ -27,6 +28,7 @@ function App() {
         </Routes>
       </Router>
       <CookieConsent />
+      <Analytics />
       <Toaster />
     </QueryClientProvider>
   )
