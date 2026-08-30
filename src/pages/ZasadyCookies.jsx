@@ -96,8 +96,14 @@ export default function ZasadyCookies() {
             <SectionTitle>Ako ich používame</SectionTitle>
             <p className={`mt-3 ${P}`}>
               Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame analytické,
-              reklamné ani sledovacie nástroje, nevytvárame profily návštevníkov a nikomu neodovzdávame
-              údaje o vašom správaní.
+              reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov. Sami o vás
+              nezhromažďujeme a nikomu neodovzdávame žiadne údaje.
+            </p>
+            <p className={`mt-3 ${P}`}>
+              To však neznamená, že sa k tretím stranám nedostane nič. Pretože web načítava písma
+              a mapu zo serverov spoločnosti Google, odošle sa jej pri tom vaša IP adresa. Google sa
+              tak dozvie, že zo zariadenia s touto adresou bola stránka načítaná. Podrobnosti nájdete
+              v sekcii o tretích stranách.
             </p>
             <p className={`mt-3 ${P}`}>
               Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
