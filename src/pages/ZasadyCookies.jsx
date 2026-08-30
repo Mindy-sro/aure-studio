@@ -96,8 +96,7 @@ export default function ZasadyCookies() {
             <SectionTitle>Ako ich používame</SectionTitle>
             <p className={`mt-3 ${P}`}>
               Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame analytické,
-              reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov. Sami o vás
-              nezhromažďujeme a nikomu neodovzdávame žiadne údaje.
+              reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
             </p>
             <p className={`mt-3 ${P}`}>
               To však neznamená, že sa k tretím stranám nedostane nič. Pretože web načítava písma
