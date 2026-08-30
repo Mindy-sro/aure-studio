@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="md:col-span-4">
             <Logo size="2rem" dark />
             <p className="mt-4 text-[0.7rem] text-[hsl(var(--chrome))]/60 max-w-xs leading-relaxed">
-              Nechtové štúdio. Industriálny luxus a tekutý minimalizmus.
+              Detail, ktorý si všimneš.
             </p>
           </div>
 

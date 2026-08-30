@@ -4,19 +4,19 @@ import { Image } from "@/components/ui/image";
 const services = [
 {
   name: "Nail Art Ateliér",
-  desc: "Individuálne kompozície — geometria, línie a textúry šité na mieru.",
+  desc: "Geometria, línie, textúry. Kompozícia šitá presne na vás.",
   price: "od 40 €",
   duration: "120 min"
 },
 {
   name: "Hard Gel Architektúra",
-  desc: "Sochárstvo nechta s tvrdým gélom — presná C-křivka, strukturálna dĺžka a trvanlivosť.",
+  desc: "Presná C-krivka. Definovaná dĺžka. Trvanlivosť, na ktorú sa dá spoľahnúť.",
   price: "od 40 €",
   duration: "120 min"
 },
 {
   name: "Rekonštrukcia & Korekcia",
-  desc: "Obnova poškodenej dosky, korekcia tvaru a posilnenie štruktúry.",
+  desc: "Poškodená doska dostáva druhú šancu — silnejšiu a v správnom tvare.",
   price: "od 40 €",
   duration: "120 min"
 }];

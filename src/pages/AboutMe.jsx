@@ -55,7 +55,7 @@ export default function AboutMe() {
               </p>
               <div className="mt-8 space-y-5 text-base leading-relaxed text-[hsl(var(--obsidian))]/70">
                 <p>
-                  Hana založila AURE Studio s jednou víziou: pretaviť presnosť nerezovej ocele
+                  Hana založila aure studio s jednou víziou: pretaviť presnosť nerezovej ocele
                   do jemnej choreografie nechtového umenia.
                 </p>
                 <p>
@@ -70,7 +70,7 @@ export default function AboutMe() {
                   výsledok, ktorý pôsobí prirodzene, čisto a dokonale.
                 </p>
                 <p>
-                  Pre Hanu je AURE Studio viac než miesto, kde vznikajú krásne nechty. Je to
+                  Pre Hanu je aure studio viac než miesto, kde vznikajú krásne nechty. Je to
                   priestor, v ktorom sa spája precíznosť, estetika a pokoj — a kde má každý detail
                   svoje miesto.
                 </p>

@@ -27,9 +27,9 @@ export default function Contact() {
   return (
     <div className="bg-[hsl(var(--chrome))]">
       <Navbar />
-      <section id="kontakt" className="pt-40 pb-28 lg:pt-48 lg:pb-36">
+      <section id="kontakt" className="pt-28 pb-20 lg:pt-48 lg:pb-36">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="steel-rule mt-16 mb-12" />
+          <div className="steel-rule mb-10 lg:mt-16 lg:mb-12" />
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Contact info */}
@@ -92,8 +92,8 @@ export default function Contact() {
             </div>
 
             {/* Map */}
-            <div className="lg:col-span-7">
-              <div className="max-w-[30rem] aspect-[3/4] overflow-hidden rounded-2xl bg-[hsl(var(--steel))] shadow-[0_24px_60px_-30px_rgba(34,25,25,0.45)] ring-1 ring-[hsl(var(--steel))]/60">
+            <div className="order-first lg:order-none lg:col-span-7">
+              <div className="max-w-[30rem] aspect-[4/3] lg:aspect-[3/4] overflow-hidden rounded-2xl bg-[hsl(var(--steel))] shadow-[0_24px_60px_-30px_rgba(34,25,25,0.45)] ring-1 ring-[hsl(var(--steel))]/60">
                 {mapAllowed ? (
                   <iframe
                     title="Mapa — AURE Studio, Fándlyho 1, Košice"

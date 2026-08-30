@@ -10,13 +10,13 @@ export default function About({ interiorImage, atmosphereImage }) {
           <div
             className="lg:col-span-7 relative bg-[hsl(var(--obsidian))] text-[hsl(var(--chrome))] px-6 py-12 lg:px-14 lg:py-16 flex flex-col justify-center lg:diagonal-clip">
             
-            <p className="text-xs uppercase tracking-[0.3em] text-[hsl(var(--chrome))]/50 mb-4">04 — CREATIVE STUDIO</p>
-            <h2 className="font-heading font-light text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] text-[hsl(var(--chrome))]">
-              Tekutý<br />minimalizmus
+            <p className="text-xs uppercase tracking-[0.3em] text-[hsl(var(--chrome))]/50 mb-4">04</p>
+            <h2 className="font-logo font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[0.02em] text-[hsl(var(--chrome))]">
+              Creative studio
             </h2>
             <div className="mt-8 space-y-5 text-base leading-[1.7] text-[hsl(var(--chrome))]/75 max-w-md">
               <p>
-                AURE STUDIO je priestor, kde sa nechtové umenie stretáva s priemyselnou presnosťou.
+                Aure studio je priestor, kde sa nechtové umenie stretáva s priemyselnou presnosťou.
                 Odmietame preplnenosť klasických salónov a hľadáme inšpiráciu v čistote a atmosfére
                 architektonických ateliérov.
               </p>

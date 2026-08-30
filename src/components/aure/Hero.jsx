@@ -22,7 +22,7 @@ export default function Hero({ heroImage }) {
           <p className="font-logo max-w-md text-lg md:text-xl font-light leading-relaxed tracking-[0.02em] text-[hsl(var(--chrome))]">
             Malý detail, veľký rozdiel.<br />
             Tvorba nechtov je výnimočný rituál, ktorý radi spríjemníme profesionálnym prostredím.<br />
-            Nechty s podpisom AURE.
+            Nechty s podpisom aure.
           </p>
           <div className="flex items-center gap-4">
             <a
