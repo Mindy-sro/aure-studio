@@ -14,7 +14,7 @@ const THIRD_PARTIES = [
   {
     name: "Mapa Google",
     where: "stránka Kontakt",
-    what: "Mapa sa načíta až po vašom súhlase. Kým ho nedáte, na jej mieste je len statický zástupný obrázok a s Googlom neprebehne žiadna komunikácia. Po načítaní môže Google nastaviť vlastné súbory cookies a spracovať vašu IP adresu.",
+    what: "Mapa sa načíta až po vašom súhlase. Kým ho nedáte, s Googlom neprebehne žiadna komunikácia. Po načítaní sa Googlu odošle vaša IP adresa a uloží si údaje do vášho prehliadača pod svojou doménou — pri našom meraní išlo o lokálne úložisko, nie o súbory cookies. Google si rozsah týchto údajov určuje sám a môže ho kedykoľvek zmeniť.",
   },
   {
     name: "Google Fonts",
@@ -58,7 +58,7 @@ export default function ZasadyCookies() {
             </p>
             <p className={`mt-3 ${P}`}>
               Jedinú výnimku tvorí <strong>mapa Google na stránke Kontakt</strong>. Ak si ju
-              zobrazíte, Google si svoje vlastné cookies nastaviť môže. Bez vášho súhlasu sa
+              zobrazíte, Google si do vášho prehliadača uloží vlastné údaje. Bez vášho súhlasu sa
               nenačíta — podrobnosti nižšie.
             </p>
           </section>
