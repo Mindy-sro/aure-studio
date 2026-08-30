@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
 import { openCookieSettings } from "@/components/aure/CookieConsent";
-import { ANALYTICS_ENABLED, EMAIL, GA_MEASUREMENT_ID } from "@/lib/site";
+import { EMAIL, GA_ID_FOR_POLICY } from "@/lib/site";
 
 const TYPES = [
   {
@@ -19,11 +19,9 @@ const TYPES = [
   },
   {
     name: "Analytika",
-    used: ANALYTICS_ENABLED,
-    state: ANALYTICS_ENABLED ? "Používame — voliteľné" : "Zatiaľ nepoužívame",
-    desc: ANALYTICS_ENABLED
-      ? "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Používame na to službu Google Analytics. Načíta sa až po vašom súhlase; ak ho odmietnete alebo odvoláte, meranie sa nespustí a už uložené súbory odstránime."
-      : "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Tento web zatiaľ žiadny analytický nástroj nemá, takže táto kategória nič neaktivuje. Prepínač pre ňu v lište ponechávame pripravený pre prípad, že meranie zavedieme.",
+    used: true,
+    state: "Používame — voliteľné",
+    desc: "Merajú, ako návštevníci stránku používajú — počet návštev, zdroj návštevnosti, ktoré stránky si prezerajú. Používame na to službu Google Analytics. Načíta sa až po vašom súhlase; ak ho odmietnete alebo odvoláte, meranie sa nespustí a už uložené súbory odstránime.",
   },
   {
     name: "Reklama",
@@ -45,26 +43,24 @@ const TYPES = [
   },
 ];
 
-const GA_COOKIES = ANALYTICS_ENABLED
-  ? [
-      {
-        name: "_ga",
-        kind: "Súbor cookie",
-        origin: "aurestudio.sk",
-        category: "Analytika",
-        retention: "2 roky",
-        desc: "Nastavuje ho Google Analytics. Prideľuje prehliadaču náhodné číslo, aby vedel odlíšiť nového návštevníka od vracajúceho sa. Vzniká až po vašom súhlase s analytickou kategóriou.",
-      },
-      {
-        name: `_ga_${GA_MEASUREMENT_ID.replace(/^G-/, "")}`,
-        kind: "Súbor cookie",
-        origin: "aurestudio.sk",
-        category: "Analytika",
-        retention: "2 roky",
-        desc: "Nastavuje ho Google Analytics. Uchováva stav aktuálnej návštevy, aby sa jednotlivé zobrazenia stránok dali spojiť do jednej relácie. Vzniká až po vašom súhlase s analytickou kategóriou.",
-      },
-    ]
-  : [];
+const GA_COOKIES = [
+  {
+    name: "_ga",
+    kind: "Súbor cookie",
+    origin: "aurestudio.sk",
+    category: "Analytika",
+    retention: "2 roky",
+    desc: "Nastavuje ho Google Analytics. Prideľuje prehliadaču náhodné číslo, aby vedel odlíšiť nového návštevníka od vracajúceho sa. Vzniká až po vašom súhlase s analytickou kategóriou.",
+  },
+  {
+    name: `_ga_${GA_ID_FOR_POLICY}`,
+    kind: "Súbor cookie",
+    origin: "aurestudio.sk",
+    category: "Analytika",
+    retention: "2 roky",
+    desc: "Nastavuje ho Google Analytics. Uchováva stav aktuálnej návštevy, aby sa jednotlivé zobrazenia stránok dali spojiť do jednej relácie. Vzniká až po vašom súhlase s analytickou kategóriou.",
+  },
+];
 
 const STORED = [
   {
@@ -87,15 +83,11 @@ const STORED = [
 ];
 
 const THIRD_PARTIES = [
-  ...(ANALYTICS_ENABLED
-    ? [
-        {
-          name: "Google Analytics",
-          where: "Všetky stránky",
-          what: "Meranie návštevnosti. Načíta sa až po vašom súhlase s analytickou kategóriou — dovtedy sa skript vôbec nestiahne. Googlu sa odošle vaša IP adresa v skrátenej podobe, adresa navštívenej stránky a základné údaje o prehliadači. Ak súhlas odvoláte, meranie sa zastaví a uložené súbory odstránime.",
-        },
-      ]
-    : []),
+  {
+    name: "Google Analytics",
+    where: "Všetky stránky",
+    what: "Meranie návštevnosti. Načíta sa až po vašom súhlase s analytickou kategóriou — dovtedy sa skript vôbec nestiahne. Googlu sa odošle vaša IP adresa v skrátenej podobe, adresa navštívenej stránky a základné údaje o prehliadači. Ak súhlas odvoláte, meranie sa zastaví a uložené súbory odstránime.",
+  },
   {
     name: "Google Maps",
     where: "Stránka Kontakt",
@@ -167,23 +159,15 @@ export default function ZasadyCookies() {
               Rozlišujeme súbory prvej strany, ktoré vytvára samotná navštívená stránka, a súbory
               tretích strán, ktoré vytvárajú externé služby vložené do stránky.
             </p>
-            {ANALYTICS_ENABLED ? (
-              <p className={`mt-3 ${P}`}>
-                Tento web nastavuje vlastné súbory cookies <strong>jedine na meranie návštevnosti</strong>,
-                a to až po vašom súhlase. Reklamné ani inzertné systémy nepoužívame a nevytvárame
-                profily návštevníkov. Kým súhlas nedáte, ukladáme do vášho zariadenia jedinú
-                položku — vaše rozhodnutie z lišty.
-              </p>
-            ) : (
-              <p className={`mt-3 ${P}`}>
-                Tento web <strong>sám nenastavuje žiadne súbory cookies</strong>. Nepoužívame
-                analytické, reklamné ani sledovacie nástroje a nevytvárame profily návštevníkov.
-                Do vášho zariadenia ukladáme jedinú položku — vaše rozhodnutie z lišty o súhlase.
-              </p>
-            )}
+            <p className={`mt-3 ${P}`}>
+              Tento web nastavuje vlastné súbory cookies <strong>jedine na meranie návštevnosti</strong>,
+              a to až po vašom súhlase. Reklamné ani inzertné systémy nepoužívame a nevytvárame
+              profily návštevníkov. Kým súhlas nedáte, ukladáme do vášho zariadenia jedinú
+              položku — vaše rozhodnutie z lišty.
+            </p>
             <p className={`mt-3 ${P}`}>
               To však neznamená, že sa k tretím stranám nedostane nič. Web načítava zo serverov
-              spoločnosti Google {ANALYTICS_ENABLED ? "písma, mapu aj meranie návštevnosti" : "písma a mapu"},
+              spoločnosti Google písma, mapu aj meranie návštevnosti,
               takže sa jej pri tom odošle vaša IP adresa. Google sa tak dozvie, že zo zariadenia
               s touto adresou bola stránka načítaná. Podrobnosti nájdete v sekcii o tretích stranách.
             </p>
