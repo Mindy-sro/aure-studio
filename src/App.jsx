@@ -4,6 +4,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import ScrollToTop from './components/ScrollToTop';
+import PageMeta from './components/PageMeta';
 import CookieConsent from '@/components/aure/CookieConsent';
 import Analytics from '@/components/aure/Analytics';
 // Add page imports here
@@ -18,6 +19,7 @@ function App() {
     <QueryClientProvider client={queryClientInstance}>
       <Router>
         <ScrollToTop />
+        <PageMeta />
         <Routes>
           {/* Add your page Route elements here */}
           <Route path="/" element={<Home />} />
