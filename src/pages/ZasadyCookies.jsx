@@ -49,7 +49,7 @@ const GA_COOKIES = [
     kind: "Súbor cookie",
     origin: "aurestudio.sk",
     category: "Analytika",
-    retention: "Najviac 13 mesiacov",
+    retention: "Najviac 2 roky",
     desc: "Nastavuje ho Google Analytics. Prideľuje prehliadaču náhodné číslo, aby vedel odlíšiť nového návštevníka od vracajúceho sa. Vzniká až po vašom súhlase s analytickou kategóriou.",
   },
   {
@@ -57,7 +57,7 @@ const GA_COOKIES = [
     kind: "Súbor cookie",
     origin: "aurestudio.sk",
     category: "Analytika",
-    retention: "Najviac 13 mesiacov",
+    retention: "Najviac 2 roky",
     desc: "Nastavuje ho Google Analytics. Uchováva stav aktuálnej návštevy, aby sa jednotlivé zobrazenia stránok dali spojiť do jednej relácie. Vzniká až po vašom súhlase s analytickou kategóriou.",
   },
 ];
@@ -227,11 +227,6 @@ export default function ZasadyCookies() {
                 </div>
               ))}
             </div>
-            <p className={`mt-6 ${P}`}>
-              Uvedená trvanlivosť je horná hranica. Google Analytics si pýta dva roky, prehliadače však
-              dobu platnosti súborov cookies skracujú — pri našom meraní v prehliadači Chrome to bolo
-              400 dní, teda necelých 13 mesiacov. Iné prehliadače ju môžu skrátiť ešte výraznejšie.
-            </p>
           </section>
 
           <section className="mt-10">
