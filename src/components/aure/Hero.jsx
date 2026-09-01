@@ -15,9 +15,9 @@ export default function Hero({ heroImage }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] w-full px-6 lg:px-10 pb-16 pt-32">
-        <p className="text-xs uppercase tracking-[0.4em] text-[hsl(var(--chrome))] mb-6">
+        <h1 className="text-xs uppercase tracking-[0.4em] text-[hsl(var(--chrome))] mb-6">
           Nechtové štúdio · Presnosť ako architektúra
-        </p>
+        </h1>
         <div className="mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <p className="font-logo max-w-md text-lg md:text-xl font-light leading-relaxed tracking-[0.02em] text-[hsl(var(--chrome))]">
             Malý detail, veľký rozdiel.<br />

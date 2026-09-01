@@ -1,22 +1,22 @@
 export const SITE_URL = "https://aurestudio.sk";
 
-const BRAND = "aure studio - Košice";
+const BRAND = "aure studio - Nechtové štúdio Košice Barca";
 
 export const PAGE_META = {
   "/": {
     title: BRAND,
     description:
-      "Nechtové štúdio AURE v Košiciach. Hard gel architektúra, japonská manikúra, nail art. Presnosť a minimalizmus v každom detaile.",
+      "Nechtové štúdio aure v Košiciach-Barci. Gélové nechty, gél-lak, manikúra a nail art. Otvorené na objednávku.",
   },
   "/o-mne": {
     title: `O nás | ${BRAND}`,
     description:
-      "Hana a jej nechtové štúdio v Košiciach. Práca s prémiovými lakmi, dôraz na detail a rituál, ktorý je rovnako dôležitý ako výsledok.",
+      "Hana a jej nechtové štúdio v Košiciach-Barci. Práca s prémiovými lakmi, dôraz na detail a rituál, ktorý je rovnako dôležitý ako výsledok.",
   },
   "/kontakt": {
     title: `Kontakt | ${BRAND}`,
     description:
-      "Telefón, e-mail a adresa nechtového štúdia AURE v Košiciach. Mapa a QR kód na uloženie kontaktu priamo do telefónu.",
+      "Nechtové štúdio aure na Fándlyho 1 v Košiciach-Barci. Telefón, e-mail, mapa a QR kód na uloženie kontaktu. Otvorené na objednávku.",
   },
   "/zasady-cookies": {
     title: `Zásady cookies | ${BRAND}`,

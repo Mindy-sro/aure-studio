@@ -1,10 +1,11 @@
 import React from "react";
-import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
 import { openCookieSettings, useCookieConsent } from "@/components/aure/CookieConsent";
 import {
   ADDRESS,
+  ADDRESS_FOR_MAPS,
   EMAIL,
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -13,8 +14,8 @@ import {
 } from "@/lib/site";
 
 const PHONE_HREF = `tel:${PHONE_E164}`;
-const MAP_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
-const MAP_LINK = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}`;
+const MAP_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS_FOR_MAPS)}&output=embed`;
+const MAP_LINK = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS_FOR_MAPS)}`;
 
 const socials = [
   { label: "Instagram", href: INSTAGRAM_URL, Icon: Instagram },
@@ -39,6 +40,17 @@ export default function Contact() {
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--obsidian))]/50">Adresa štúdia</p>
                   <p className="mt-1 text-base text-[hsl(var(--obsidian))]/85 leading-relaxed">{ADDRESS}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Clock className="w-5 h-5 mt-1 text-[hsl(var(--burgundy))] shrink-0" />
+                <div>
+                  <p className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--obsidian))]/50">Otváracie hodiny</p>
+                  <p className="mt-1 text-base text-[hsl(var(--obsidian))]/85 leading-relaxed">Otvorené na objednávku</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[hsl(var(--obsidian))]/60">
+                    Termín si dohodnite telefonicky alebo cez Instagram.
+                  </p>
                 </div>
               </div>
 

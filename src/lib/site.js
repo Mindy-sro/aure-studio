@@ -4,7 +4,9 @@ export const CONTACT_NAME = "AURE STUDIO - Blašková";
 export const ADDRESS_STREET = "Fándlyho 1";
 export const ADDRESS_CITY = "Košice";
 export const ADDRESS_ZIP = "040 17";
-export const ADDRESS = `${ADDRESS_STREET}, ${ADDRESS_ZIP} ${ADDRESS_CITY}`;
+export const ADDRESS_DISTRICT = "Barca";
+export const ADDRESS = `${ADDRESS_STREET}, ${ADDRESS_ZIP} ${ADDRESS_CITY}-${ADDRESS_DISTRICT}`;
+export const ADDRESS_FOR_MAPS = `${ADDRESS_STREET}, ${ADDRESS_ZIP} ${ADDRESS_CITY}`;
 
 export const PHONE_DISPLAY = "+421 904 659 298";
 export const PHONE_E164 = "+421904659298";

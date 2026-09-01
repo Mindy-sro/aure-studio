@@ -4,18 +4,21 @@ import { Image } from "@/components/ui/image";
 const services = [
 {
   name: "Nail Art Ateliér",
+  plain: "Gél-lak · Manikúra · Zdobenie",
   desc: "Geometria, línie, textúry. Kompozícia šitá presne na vás.",
   price: "od 40 €",
   duration: "120 min"
 },
 {
   name: "Hard Gel Architektúra",
+  plain: "Gélové nechty · Nová sada",
   desc: "Presná C-krivka. Definovaná dĺžka. Trvanlivosť, na ktorú sa dá spoľahnúť.",
   price: "od 40 €",
   duration: "120 min"
 },
 {
   name: "Rekonštrukcia & Korekcia",
+  plain: "Doplnenie · Korekcia",
   desc: "Poškodená doska dostáva druhú šancu — silnejšiu a v správnom tvare.",
   price: "od 40 €",
   duration: "120 min"
@@ -66,6 +69,9 @@ export default function Services({ portfolioImages }) {
                     {s.price}
                   </span>
                 </div>
+                <p className="mt-2 text-[0.7rem] uppercase tracking-[0.2em] text-[hsl(var(--obsidian))]/45">
+                  {s.plain}
+                </p>
                 <div className="mt-3 flex items-center justify-between gap-6">
                   <p className="text-sm leading-relaxed text-[hsl(var(--obsidian))]/70 max-w-xl">{s.desc}</p>
                   <span className="text-xs uppercase tracking-[0.2em] text-[hsl(var(--obsidian))]/50 whitespace-nowrap">
