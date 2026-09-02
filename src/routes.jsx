@@ -34,6 +34,7 @@ export const routes = [
       { path: "o-mne", element: <AboutMe /> },
       { path: "kontakt", element: <Contact /> },
       { path: "zasady-cookies", element: <ZasadyCookies /> },
+      { path: "404", element: <PageNotFound /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },
