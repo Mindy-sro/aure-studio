@@ -1,5 +1,21 @@
 # AURE Studio
 
+## Aktuálna produkčná verzia
+
+Schválená verzia z `AURE_OPRAVENE_Notino_kremove_pozadie.zip` je uložená v
+`site-release/` vrátane HTML, JavaScriptu, obrázkov a lokálnych fontov. ZIP obsahoval
+hotový build, nie jeho pôvodné React zdroje. Existujúce `src/` preto zodpovedá
+staršej verzii; `npm run dev` a `npm run build:source` pracujú s touto staršou verziou.
+
+Produkčný postup: `npm ci`, `npm run build`, potom `npm run preview` na lokálnu
+kontrolu. Build kopíruje schválený obsah zo `site-release/` do `dist/`.
+Cloudflare Workers Builds sleduje GitHub vetvu `main`, spúšťa `npm run build`
+a `npx wrangler deploy`. Cieľový Worker je `solitary-leaf-5919`. Zmeny produkcie
+ukladajte cez Git a push do `main`; nenahrávajte súbory ručne do Cloudflare.
+Na ďalší vývoj novej verzie je vhodné získať jej pôvodné zdrojové súbory.
+
+Nasledujúca dokumentácia opisuje pôvodnú zdrojovú verziu.
+
 Statická webová prezentácia nechtového štúdia AURE (Košice). React + Vite + Tailwind.
 
 Pôvodne postavené v Base44, odtiaľ vyexportované a odpojené — aplikácia už nemá žiadny
