@@ -6,7 +6,7 @@ export const PAGE_META = {
   "/": {
     title: BRAND,
     description:
-      "Nechtové štúdio aure v Košiciach-Barci. Gélové nechty, gél-lak, manikúra a nail art. Otvorené na objednávku.",
+      "Nechtové štúdio aure v Košiciach-Barci. Suchá manikúra s gél lakom aj bez lakovania, pánska manikúra a odstránenie gél laku. Na objednávku.",
   },
   "/o-mne": {
     title: `O nás | ${BRAND}`,
@@ -17,6 +17,11 @@ export const PAGE_META = {
     title: `Kontakt | ${BRAND}`,
     description:
       "Nechtové štúdio aure na Fándlyho 1 v Košiciach-Barci. Telefón, e-mail, mapa a QR kód na uloženie kontaktu. Otvorené na objednávku.",
+  },
+  "/rezervacie": {
+    title: `Rezervácie | ${BRAND}`,
+    description:
+      "Rezervujte si manikúru v AURE Studio v Košiciach-Barci. Vyberte si službu a voľný termín online cez rezervačný systém Notino.",
   },
   "/zasady-cookies": {
     title: `Zásady cookies | ${BRAND}`,

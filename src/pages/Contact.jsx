@@ -4,6 +4,7 @@ import Navbar from "@/components/aure/Navbar";
 import Footer from "@/components/aure/Footer";
 import { openCookieSettings, useCookieConsent } from "@/components/aure/CookieConsent";
 import {
+  BOOKING_URL,
   ADDRESS,
   ADDRESS_FOR_MAPS,
   EMAIL,
@@ -11,6 +12,8 @@ import {
   INSTAGRAM_URL,
   PHONE_DISPLAY,
   PHONE_E164,
+  OPENING_HOURS_WEEKDAYS,
+  OPENING_HOURS_WEEKEND,
 } from "@/lib/site";
 
 const PHONE_HREF = `tel:${PHONE_E164}`;
@@ -26,9 +29,9 @@ export default function Contact() {
   const mapAllowed = useCookieConsent().functional;
 
   return (
-    <div className="bg-[hsl(var(--chrome))]">
+    <div className="aure-home bg-[hsl(var(--chrome))]">
       <Navbar />
-      <section id="kontakt" className="pt-28 pb-20 lg:pt-48 lg:pb-36">
+      <section id="kontakt" className="pt-28 pb-12 lg:pt-36 lg:pb-16">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="steel-rule mb-10 lg:mt-16 lg:mb-12" />
 
@@ -47,10 +50,12 @@ export default function Contact() {
                 <Clock className="w-5 h-5 mt-1 text-[hsl(var(--burgundy))] shrink-0" />
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-[hsl(var(--obsidian))]/50">Otváracie hodiny</p>
-                  <p className="mt-1 text-base text-[hsl(var(--obsidian))]/85 leading-relaxed">Otvorené na objednávku</p>
+                  <p className="mt-1 text-base text-[hsl(var(--obsidian))]/85 leading-relaxed">{OPENING_HOURS_WEEKDAYS}</p>
+                  <p className="mt-1 text-base text-[hsl(var(--obsidian))]/85 leading-relaxed">{OPENING_HOURS_WEEKEND}</p>
                   <p className="mt-2 text-sm leading-relaxed text-[hsl(var(--obsidian))]/60">
-                    Termín si dohodnite telefonicky alebo cez Instagram.
+                    Termín si rezervujte online cez Notino alebo sa s nami spojte telefonicky.
                   </p>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex px-6 py-3 text-xs uppercase tracking-[0.15em] bg-[hsl(var(--burgundy))] text-white hover:bg-[hsl(var(--obsidian))] transition-colors">Rezervovať termín</a>
                 </div>
               </div>
 

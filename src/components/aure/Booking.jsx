@@ -1,110 +1,20 @@
-import React, { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
-
-const services = [
-"Hard Gel Architektúra",
-"Japonská manikúra",
-"Chrome & Liquid Metal",
-"Matte Burgundy",
-"Nail Art Ateliér",
-"Rekonštrukcia & Korekcia"];
-
-
-const times = ["9:00", "11:00", "13:00", "15:00", "17:00"];
+import { BOOKING_URL } from "@/lib/site";
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Booking() {
-  const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", service: services[0], date: "", time: times[0] });
-  const [loading, setLoading] = useState(false);
-
-  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  const submit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast({
-        title: "Rezervácia prijatá",
-        description: `Ďakujeme, ${form.name}. Potvrdenie odošleme na ${form.email}.`
-      });
-      setForm({ name: "", email: "", phone: "", service: services[0], date: "", time: times[0] });
-    }, 900);
-  };
-
-  const field = "w-full bg-transparent border-b border-[hsl(var(--steel))] py-3 text-[hsl(var(--chrome))] placeholder:text-[hsl(var(--chrome))]/40 focus:border-[hsl(var(--chrome))] outline-none transition-colors";
-
-  return null;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return (
+    <section className="bg-[hsl(var(--sage-light))] py-12 lg:py-16">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-[hsl(var(--sage))] mb-4">Váš čas pre seba</p>
+          <h2 className="font-heading text-3xl lg:text-4xl text-[hsl(var(--obsidian))]">Nechty s podpisom aure.</h2>
+          <p className="mt-4 text-[hsl(var(--obsidian))]/70">Vyberte si službu a termín v našom online rezervačnom systéme.</p>
+        </div>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex self-start md:self-auto items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--burgundy))] text-white text-xs uppercase tracking-[0.2em] hover:bg-[hsl(var(--obsidian))] transition-colors">
+          Rezervovať termín <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  );
 }

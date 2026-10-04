@@ -21,11 +21,20 @@ export default function Analytics() {
   const { analytics } = useCookieConsent();
 
   useEffect(() => {
+    window[`ga-disable-${GA_MEASUREMENT_ID}`] = !analytics;
+
     if (!GA_CONFIGURED || !analytics) {
+      if (window.gtag) {
+        window.gtag("consent", "update", { analytics_storage: "denied" });
+      }
+      document.getElementById(SCRIPT_ID)?.remove();
       dropGaCookies();
       return;
     }
 
+    if (window.gtag) {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+    }
     if (document.getElementById(SCRIPT_ID)) return;
 
     const script = document.createElement("script");

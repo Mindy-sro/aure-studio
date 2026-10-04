@@ -10,6 +10,7 @@ import PageNotFound from "@/lib/PageNotFound";
 import Home from "@/pages/Home";
 import AboutMe from "@/pages/AboutMe";
 import Contact from "@/pages/Contact";
+import Reservations from "@/pages/Reservations";
 import ZasadyCookies from "@/pages/ZasadyCookies";
 
 function Layout() {
@@ -33,6 +34,7 @@ export const routes = [
       { index: true, element: <Home /> },
       { path: "o-mne", element: <AboutMe /> },
       { path: "kontakt", element: <Contact /> },
+      { path: "rezervacie", element: <Reservations /> },
       { path: "zasady-cookies", element: <ZasadyCookies /> },
       { path: "404", element: <PageNotFound /> },
       { path: "*", element: <PageNotFound /> },

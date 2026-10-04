@@ -1,3 +1,4 @@
+import { BOOKING_URL } from "@/lib/site";
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/aure/Navbar";
@@ -5,13 +6,13 @@ import Footer from "@/components/aure/Footer";
 import { Image } from "@/components/ui/image";
 
 const PROFILE_PHOTO =
-"/images/profile-hana.jpg";
+"/images/hana-blaskova-portrait.jpg";
 
 export default function AboutMe() {
   return (
-    <div className="bg-[hsl(var(--chrome))]">
+    <div className="aure-home bg-[hsl(var(--chrome))]">
       <Navbar />
-      <section id="o-mne" className="pt-40 pb-28 lg:pt-48 lg:pb-36">
+      <section id="o-mne" className="pt-28 pb-12 lg:pt-36 lg:pb-16">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <h1 className="mt-16 font-heading text-2xl lg:text-4xl font-bold burgundy-fill leading-[0.95]">
             Hana Blašková
@@ -19,10 +20,10 @@ export default function AboutMe() {
 
           <div className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-5">
-              <div className="max-w-[15rem] aspect-[3/4] overflow-hidden rounded-2xl bg-[hsl(var(--steel))] shadow-[0_24px_60px_-30px_rgba(34,25,25,0.45)] ring-1 ring-[hsl(var(--steel))]/60">
+              <div className="max-w-[15rem] aspect-[3/4] aure-photo-frame overflow-hidden rounded-2xl bg-[hsl(var(--steel))] shadow-[0_24px_60px_-30px_rgba(34,25,25,0.45)] ring-1 ring-[hsl(var(--steel))]/60">
                 <Image
                   src={PROFILE_PHOTO}
-                  alt="Manikérka v ateliéri AURE Studio"
+                  alt="Hana Blašková – zakladateľka aure studio"
                   fittingType="fill"
                   className="w-full h-full object-cover" />
                 
@@ -77,11 +78,10 @@ export default function AboutMe() {
               </div>
 
               <div className="mt-12 flex flex-wrap gap-4">
-                <Link
-                  to="/#studio"
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center px-8 py-4 text-xs uppercase tracking-[0.25em] bg-[hsl(var(--burgundy))] text-[hsl(var(--chrome))] hover:bg-[hsl(var(--obsidian))] transition-colors">
-                  CREATIVE STUDIO
-                </Link>
+                  Rezervovať termín
+                </a>
                 <Link
                   to="/"
                   className="inline-flex items-center px-8 py-4 text-xs uppercase tracking-[0.25em] border border-[hsl(var(--obsidian))]/30 text-[hsl(var(--obsidian))] hover:bg-[hsl(var(--obsidian))] hover:text-[hsl(var(--chrome))] transition-colors">

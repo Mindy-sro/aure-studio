@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/aure/Logo";
 import { Instagram, Facebook } from "lucide-react";
-import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
+import { BOOKING_URL, FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
 import { openCookieSettings } from "@/components/aure/CookieConsent";
 
 export default function Footer() {
@@ -34,6 +34,7 @@ export default function Footer() {
             <p className="text-[0.6rem] uppercase tracking-[0.25em] text-[hsl(var(--steel))] mb-4">Kontakt</p>
             <a href="tel:+421904659298" className="block text-[0.7rem] text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">+421 904 659 298</a>
             <a href="mailto:info@aurestudio.sk" className="block text-[0.7rem] text-[hsl(var(--chrome))]/70 hover:text-[hsl(var(--chrome))] transition-colors">info@aurestudio.sk</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-3 block text-[0.7rem] text-[hsl(var(--chrome))]/90 hover:underline underline-offset-4">Rezervovať termín</a>
           </div>
 
           <div className="md:col-span-2">

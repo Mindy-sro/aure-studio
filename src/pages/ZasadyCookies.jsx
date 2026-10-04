@@ -93,11 +93,7 @@ const THIRD_PARTIES = [
     where: "Stránka Kontakt",
     what: "Interaktívna mapa s polohou štúdia. Načíta sa až po vašom súhlase — dovtedy s Googlom neprebehne žiadna komunikácia. Po načítaní sa Googlu odošle vaša IP adresa.",
   },
-  {
-    name: "Google Fonts",
-    where: "Všetky stránky",
-    what: "Typografia webu. Písma sa sťahujú zo serverov Google, čím sa mu odošle vaša IP adresa. Súbory cookies sa pri tom nenastavujú. Túto službu nie je možné podmieniť súhlasom bez toho, aby sa narušilo zobrazenie stránky.",
-  },
+
 ];
 
 const COUNT_WORDS = { 1: "jednej", 2: "dvoch", 3: "troch", 4: "štyroch" };
@@ -119,9 +115,9 @@ const LABEL = "text-[0.6rem] uppercase tracking-[0.2em] text-[hsl(var(--obsidian
 
 export default function ZasadyCookies() {
   return (
-    <div className="bg-[hsl(var(--chrome))] min-h-screen flex flex-col">
+    <div className="aure-home bg-[hsl(var(--chrome))] min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-36 md:pt-44 pb-24">
+      <main className="flex-1 pt-28 md:pt-36 pb-16">
         <div className="mx-auto max-w-3xl px-6 lg:px-10">
           <p className="text-[0.6rem] uppercase tracking-[0.3em] text-[hsl(var(--steel))]">— O zásadách —</p>
           <h1 className="font-heading text-4xl md:text-5xl text-[hsl(var(--obsidian))] mt-3 leading-tight">
@@ -166,8 +162,8 @@ export default function ZasadyCookies() {
               položku — vaše rozhodnutie z lišty.
             </p>
             <p className={`mt-3 ${P}`}>
-              To však neznamená, že sa k tretím stranám nedostane nič. Web načítava zo serverov
-              spoločnosti Google písma, mapu aj meranie návštevnosti,
+              To však neznamená, že sa k tretím stranám nedostane nič. Po príslušnom súhlase web načítava zo serverov
+              spoločnosti Google mapu a meranie návštevnosti,
               takže sa jej pri tom odošle vaša IP adresa. Google sa tak dozvie, že zo zariadenia
               s touto adresou bola stránka načítaná. Podrobnosti nájdete v sekcii o tretích stranách.
             </p>

@@ -1,78 +1,56 @@
-# AURE Studio
+# aure studio
 
-## Aktuálna produkčná verzia
+Web nechtového štúdia v Košiciach: React, Vite, vite-react-ssg a Tailwind. Zdrojové súbory, fotografie, fonty a história zmien patria do GitHub repozitára Mindy-sro/aure-studio. Produkčná vetva je main.
 
-Schválená verzia z `AURE_OPRAVENE_Notino_kremove_pozadie.zip` je uložená v
-`site-release/` vrátane HTML, JavaScriptu, obrázkov a lokálnych fontov. ZIP obsahoval
-hotový build, nie jeho pôvodné React zdroje. Existujúce `src/` preto zodpovedá
-staršej verzii; `npm run dev` a `npm run build:source` pracujú s touto staršou verziou.
+## Vývoj a kontrola
 
-Produkčný postup: `npm ci`, `npm run build`, potom `npm run preview` na lokálnu
-kontrolu. Build kopíruje schválený obsah zo `site-release/` do `dist/`.
-Cloudflare Workers Builds sleduje GitHub vetvu `main`, spúšťa `npm run build`
-a `npx wrangler deploy`. Cieľový Worker je `solitary-leaf-5919`. Zmeny produkcie
-ukladajte cez Git a push do `main`; nenahrávajte súbory ručne do Cloudflare.
-Na ďalší vývoj novej verzie je vhodné získať jej pôvodné zdrojové súbory.
+Vyžaduje Node.js 22 alebo novší.
 
-Nasledujúca dokumentácia opisuje pôvodnú zdrojovú verziu.
-
-Statická webová prezentácia nechtového štúdia AURE (Košice). React + Vite + Tailwind.
-
-Pôvodne postavené v Base44, odtiaľ vyexportované a odpojené — aplikácia už nemá žiadny
-backend ani závislosť na Base44. Všetky obrázky sú lokálne v `public/images/`.
-
-## Vývoj
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
+npm run check
+npm run deploy:check
 ```
 
-Beží na http://localhost:5173
+Aplikácia sa vyvíja v src/. Fotografie, logá a lokálne fonty sú v public/.
+`npm run dev` aj `npm run build` používajú rovnaké React zdroje. Build vytvára statické stránky v dist/. Tento adresár sa necommituje.
+Priečinok site-release a kopírovanie predpripraveného buildu sa nepoužívajú.
+GitHub Actions v .github/workflows/check.yml kontroluje pull requesty a push do main. Neobsahuje deploy: samotné publikovanie má robiť natívne Cloudflare Workers Builds.
 
-## Google Analytics
+## Jednorazové nastavenie automatického nasadenia
 
-Meracie ID je v `src/lib/site.js` ako `GA_MEASUREMENT_ID`. Zatiaľ je tam zástupná hodnota
-`G-XXXXXXXXXX` — nahraď ju skutočným ID z Google Analytics.
+Táto konfigurácia je pripravená, ale pripojenie účtu Cloudflare nie je súčasťou Git repozitára a musí byť overené v dashboarde.
 
-Kým tam zástupná hodnota zostáva, skript sa nenačíta a žiadna `_ga` cookie nevznikne.
-Zásady cookies Analytics popisujú v oboch prípadoch; z ID sa odvodzuje len názov
-`_ga_<ID>` v zozname.
+1. V Cloudflare otvor existujúci Worker, ktorý aktuálne obsluhuje aurestudio.sk a www.aurestudio.sk. Nevytváraj ďalší náhodne pomenovaný Worker.
+2. Over jeho meno oproti name vo wrangler.jsonc. Aktuálna konfigurácia používa solitary-leaf-5919; ak domény obsluhuje iný Worker, najprv zosúlaď meno konfigurácie s overeným produkčným Workerom.
+3. Settings → Builds → pripoj GitHub repozitár Mindy-sro/aure-studio.
+4. Produkčná vetva: main. Koreň projektu: koreň repozitára. Node: 22.
+5. Build command: npm run check. Deploy command: npm run deploy.
+6. Over priradenie oboch domén k tomuto Workeru a prvý úspešný build.
 
-Po nahradení sa gtag načíta až po súhlase s analytickou kategóriou. Pri odvolaní súhlasu
-sa `_ga*` cookies odstránia.
+Po dokončení prepojenia push do main automaticky spustí build a nasadenie. Build obsahuje lint, preto neúspešná kontrola zastaví nasadenie. História nasadení zostáva v Cloudflare.
 
-## Build
+## Budúce úpravy
 
-```bash
-npm run build
-```
-
-Výsledok je v `dist/`.
-
-## Nasadenie (Websupport)
-
-Nahrať **obsah** `dist/` (nie samotný priečinok) do `public_html`.
-
-`public/.htaccess` sa do buildu kopíruje automaticky a zabezpečuje, aby priame otvorenie
-podstránky (`/kontakt`, `/o-mne`, `/zasady-cookies`) nevrátilo 404 od Apache.
+Pracovná vetva → kontrola/náhľad → commit → GitHub → main → Cloudflare → kontrola reálnej domény. Pokyn používateľa nasadiť na produkciu znamená použiť tento postup. ZIP je iba export, nie náhrada synchronizácie zdrojov.
 
 ## Stránky
 
-| cesta | obsah |
-|---|---|
-| `/` | domov — hero, služby, portfólio, o štúdiu |
-| `/o-mne` | profil |
-| `/kontakt` | kontaktné údaje a mapa |
-| `/zasady-cookies` | zásady používania cookies |
+- / — homepage
+- /o-mne — Hana Blašková
+- /kontakt — kontakt a mapa načítaná až po funkčnom súhlase
+- /rezervacie — cenník a Notino
+- /zasady-cookies — cookies
+- /404 — stránka nenájdená
 
-## Známe nedoriešené veci
+Všetky obsahové podstránky používajú rovnakú krémovú paletu. Rezervačné tlačidlá odkazujú na https://www.notino.sk/salony/aure-studio_1/. Menu Rezervácie ponecháva prístup k vlastnej podstránke.
 
-- **Fotka na `/o-mne`** je stocková fotografia (`public/images/profile-hana.jpg`), nie
-  skutočná fotka. Nahradiť súbor.
-- **Nedokončený text** v `src/pages/AboutMe.jsx` — posledný odstavec končí uprostred vety.
-- **Rezervačný formulár** (`src/components/aure/Booking.jsx`) je nefunkčný a skrytý —
-  komponent končí na `return null`. Odosielanie nikdy nikam nič neposielalo.
-- **`/zasady-cookies`** popisuje Google Analytics a cookies WordPress pluginov, ktoré sa
-  na webe nenachádzajú. Text je prevzatý z iného webu a treba ho prepísať alebo odstrániť.
-  Web aktuálne nepoužíva žiadny tracking.
+## Obsah a analytika
+
+Pôvodné logo je uložené ako SVG s obrysmi písma. Fonty sú lokálne. Portrét Hany a fotografia štúdia sú dodané používateľom; stampovaný makro detail je vizuálny návrh vytvorený pomocou AI. Google Analytics ID je v src/lib/site.js; analytika sa aktivuje až po súhlase a pri odvolaní sa vypne.
+
+## Dokumentácia
+
+https://developers.cloudflare.com/workers/ci-cd/builds/
+https://developers.cloudflare.com/workers/ci-cd/builds/configuration/

@@ -30,3 +30,8 @@ dist-ssr
 .env
 .vite
 base44/.app.jsonc
+
+.vite-react-ssg-temp/
+
+# Generated release exports are not application sources
+site-release/
