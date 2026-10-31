@@ -10,13 +10,13 @@ export default function PriceList({ compact = false }) {
         <tbody className="divide-y divide-[hsl(var(--steel))]">
           {SERVICE_MENU.map((service) => (
             <tr key={service.name} className="aure-service-row">
-              <th scope="row" className="py-6 pr-5 font-normal text-base sm:text-lg leading-relaxed text-[hsl(var(--obsidian))]"><span className="block">{service.name}</span><span className="mt-2 block text-sm leading-relaxed text-[hsl(var(--obsidian))]/60">{service.description}</span></th>
+              <th scope="row" className="py-6 pr-5 font-normal text-base sm:text-lg leading-relaxed text-[hsl(var(--obsidian))]"><span className="block">{service.name}</span>{service.description && <span className="mt-2 block text-sm leading-relaxed text-[hsl(var(--obsidian))]/60">{service.description}</span>}</th>
               <td className="py-6 align-top text-right whitespace-nowrap font-heading text-2xl text-[hsl(var(--burgundy))]">{service.price}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p className="mt-5 text-sm leading-relaxed text-[hsl(var(--obsidian))]/65">Služby vykonávame na objednanie. Ceny sú uvedené s DPH.<br />Platba v hotovosti alebo kartou.</p>
+      <p className="mt-5 text-sm leading-relaxed text-[hsl(var(--obsidian))]/65">Služby vykonávame na objednanie. Cena je uvedená s DPH.<br />Platba v hotovosti alebo kartou.</p>
     </div>
   );
 }

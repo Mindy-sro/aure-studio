@@ -19,10 +19,12 @@ export const OPENING_HOURS_WEEKDAYS = "Pondelok – piatok: na objednávku";
 export const OPENING_HOURS_WEEKEND = "Sobota – nedeľa: zatvorené";
 export const PRICE_LIST_VALID_FROM = "1. 11. 2026";
 export const SERVICE_MENU = [
-  { name: "Suchá manikúra s lakovaním – gél lak", price: "40 €", description: "Precízna úprava a farba, ktorá podčiarkne váš štýl." },
-  { name: "Suchá manikúra bez lakovania", price: "20 €", description: "Prirodzená krása nechtov, upravená do detailu." },
-  { name: "Pánska manikúra", price: "20 €", description: "Upravené ruky. Nenápadný detail, dobrý dojem." },
-  { name: "Odstránenie gél laku na rukách", price: "10 €", description: "Dajte zbohom starej farbe a priestor novému štýlu." },
+  { name: "Manikúra", price: "15 €", description: "Úprava nechtov, práca s nechtovou kožičkou" },
+  { name: "Gellak", price: "30 €", description: "Manikúra, gél lak" },
+  { name: "Nové gélové nechty", price: "40 €", description: "Manikúra, predĺženie, modeláž, úprava tvaru" },
+  { name: "Doplnenie gélových nechtov", price: "35 €", description: "Manikúra, doplnenie, úprava tvaru" },
+  { name: "Extra dizajn / Francúzska manikúra", price: "5 €", description: "Francúzska, kamienky, prášok, pečiatky, atď." },
+  { name: "Oprava jedného nechta", price: "4 €", description: "" },
 ];
 
 export const GA_MEASUREMENT_ID = "G-LC1FPNB1RN";
